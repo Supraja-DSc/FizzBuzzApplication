@@ -15,11 +15,9 @@ public class Program
 
         // Display FizzBuzz numbers
         Console.WriteLine($"FizzBuzz numbers for input {fizzBuzzModel.Input}:");
-        foreach (var tuple in fizzBuzzModel.FizzBuzzNumbers)
+        foreach (var numbers in fizzBuzzModel.FizzBuzzNumbers)
         {
-            Console.ForegroundColor = tuple.Item2;
-            Console.WriteLine(tuple.Item1);
-            Console.ResetColor();
+            Console.WriteLine(numbers);
         }
     }
 }

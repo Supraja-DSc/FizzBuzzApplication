@@ -1,7 +1,6 @@
 ﻿using FizzBuzzApplication.Interface;
 using FizzBuzzApplication.Models;
 using FizzBuzzApplication.Services.Interface;
-using System.Drawing;
 
 namespace FizzBuzzApplication.Services;
 
@@ -19,24 +18,19 @@ public class FizzBuzzService : IFizzBuzzService
         };
     }
 
-    public IList<(string, ConsoleColor)> GetFizzBuzzNumbers(int input)
+    public IList<string> GetFizzBuzzNumbers(int input)
     {
-        var fizzBuzzNumbers = new List<(string,ConsoleColor)>();
+        var fizzBuzzNumbers = new List<string>();
 
         for (int i = 1; i <= input; i++)
         {
             string result = string.Empty;
-            ConsoleColor color = ConsoleColor.White;
 
             foreach (var rule in _rules)
             {
                 if (rule.IsInput(i))
                 {
                     result += rule.Execute();
-                    if (rule is FizzGenerator)
-                        color = ConsoleColor.Blue; // Fizz color
-                    else if (rule is BuzzGenerator)
-                        color = ConsoleColor.Green; // Buzz color
                 }
             }
 
@@ -45,7 +39,7 @@ public class FizzBuzzService : IFizzBuzzService
                 result = i.ToString();
             }
 
-            fizzBuzzNumbers.Add((result,color));
+            fizzBuzzNumbers.Add(result);
         }
 
         return fizzBuzzNumbers;
